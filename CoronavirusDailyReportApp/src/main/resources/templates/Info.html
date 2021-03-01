@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Worldwide Coronavirus Cases</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container">
+    <h1>Worldwide Coronavirus Cases Application</h1>
+    <p>This app lists the total number of cases reported by countries and the number of cases per day.</p>
+
+    <div class="jumbotron">
+        <h1 class="display-4" th:text="${totalReport}"></h1>
+        <p class="lead">Total cases reported as of today</p>
+        <hr class="my-4">
+        <p>
+            <span>New cases reported since previous day:</span>
+            <span th:text="${totalNewReport}"></span>
+        </p>
+
+        <p>
+            <span>Updated on:</span>
+            <span th:text="${date}"></span>
+        </p>
+
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>Country</th>
+            <th>State</th>
+            <th>Last Updated Report</th>
+            <th>Total cases reported</th>
+        </tr>
+        <tr th:each="reportsInfo : ${reportsInfo}">
+            <td th:text="${reportsInfo.getCountry()}"></td>
+            <td th:text="${reportsInfo.getProvince()}"></td>
+            <td th:text="${reportsInfo.getDiffPrevDay()}">0</td>
+            <td th:text="${reportsInfo.getTotalReport()}">0</td>
+        </tr>
+    </table>
+</div>
+</body>
+
+</html>
